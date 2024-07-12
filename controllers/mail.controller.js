@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport(mailOptions);
 
 export const sendEmail = async (req, res) => {
     try {
-      const { firstName, lastName, phone, email, subject, message } = req.body;
+      const { firstName, lastName, phone, email, message } = req.body;
       
       const templatePath = path.join(__dirname, '../mails', 'contact.ejs');
 
@@ -39,7 +39,7 @@ export const sendEmail = async (req, res) => {
       transporter.sendMail({
         from: process.env.SMTP_FROM, 
         to: process.env.SMTP_TO,
-        subject: subject,
+        subject: 'New Contact',
         html: html
         }, (error, info) => {
             if (error) {
